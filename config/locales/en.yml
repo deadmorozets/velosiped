@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      dmy: "%d/%m/%Y"

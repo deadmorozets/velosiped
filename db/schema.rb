@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218205640) do
+ActiveRecord::Schema.define(version: 20150302191220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "occupations", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "operations", force: true do |t|
     t.integer  "person_id"
@@ -25,7 +31,10 @@ ActiveRecord::Schema.define(version: 20150218205640) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
+
+  add_index "operations", ["order_id"], name: "index_operations_on_order_id", using: :btree
 
   create_table "orders", force: true do |t|
     t.date     "etc_date"
@@ -35,16 +44,23 @@ ActiveRecord::Schema.define(version: 20150218205640) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "person_id"
   end
 
-  create_table "person", force: true do |t|
-    t.integer  "orders_id"
+  add_index "orders", ["person_id"], name: "index_orders_on_person_id", using: :btree
+
+  create_table "people", force: true do |t|
+    t.integer  "order_id"
+    t.integer  "operation_id"
     t.string   "first_name"
     t.integer  "post"
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "occupation_id"
   end
+
+  add_index "people", ["occupation_id"], name: "index_people_on_occupation_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

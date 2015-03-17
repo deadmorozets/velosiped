@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :orders
+  resources :orders, except: :show do
+    resources :operations
+  end
+  
+  resources :people, except: :show
+  resources :occupations, except: :show
 
   devise_for :users
 

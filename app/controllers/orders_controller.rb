@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
   end
 
   def order_param
-    params.require(:order).permit(:title, :start_date)
+    params.require(:order).permit(:title, :start_date, :etc_date, :finish_date, :signed)
   end 
 
 end

@@ -11,23 +11,25 @@
 		      <table class="table table-striped table-hover ">
 		        <thead>
 		          <tr>
-		            <th class='col-md-4'>Название</th>
+		            <th class='col-md-5'>Название</th>
 		            <th class='col-md-2'>Начат</th>
-		            <th class='col-md-2'>Ожидается</th>
+		            <th class='col-md-2'>Нужно сдать</th>
 		            <th class='col-md-2'>Сдан</th>
-		            <th class='col-md-1'></th>
 		            <th class='col-md-1'></th>
 		          </tr>
 		        </thead>
 		        <tbody>
 		          <% @orders.each do |p| %>
 								<tr>
-									<td><%= p.title %></td>
+									<% if p.signed %>
+										<td> + <%= link_to p.title, edit_order_path(p) %></td>
+									<% else %>
+										<td> - <%= link_to p.title, edit_order_path(p) %></td>
+									<% end %>
 									<td><%= p.start_date %></td>
 									<td><%= p.etc_date %></td>
 									<td><%= p.finish_date %></td>
-									<td><%= link_to 'Подробнее', edit_order_path(p) %></td>
-			                		<td><%= link_to 'Удалить', order_path(p), :method => :delete %></td>
+									<td><%= link_to 'Удалить', order_path(p), :method => :delete %></td>
 								</tr>
 		          <% end %>
 		        </tbody>
@@ -37,7 +39,7 @@
 		</div>
 
 		<div>
-	    <%= link_to 'Новый заказ', new_order_path, :class => '' %>
+	    <%= link_to 'Новый заказ', new_order_path, :class => 'btn btn-success' %>
     </div>
 
 	</div>
