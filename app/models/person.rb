@@ -1,3 +1,3 @@
 class Person < ActiveRecord::Base
-	has_one :occupation	
+	belongs_to :occupation, inverse_of: :person
 end

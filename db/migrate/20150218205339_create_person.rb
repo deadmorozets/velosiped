@@ -3,6 +3,7 @@ class CreatePerson < ActiveRecord::Migration
     create_table :people do |t|
       t.belongs_to :order
       t.belongs_to :operation
+      t.belongs_to :occupation, index: true
       t.string :first_name
       t.integer :post
       t.string :last_name

@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'occupations/new'
+
+  get 'occupations/create'
+
+  get 'occupations/edit'
+
+  get 'occupations/update'
+
+  get 'occupations/delete'
+
   resources :orders, except: :show do
     resources :operations
   end

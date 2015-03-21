@@ -23,7 +23,7 @@ class PeopleController < ApplicationController
 	end
 
 	def update
-		if @person.update
+		if @person.update(person_params)
 			redirect_to people_path
 		else 
 			render :edit
@@ -43,7 +43,7 @@ class PeopleController < ApplicationController
 	end
 
 	def person_params
-		params.require(:person).permit(:first_name, :last_name)
+		params.require(:person).permit(:first_name, :last_name, :occupation_id)
 	end
 
 end

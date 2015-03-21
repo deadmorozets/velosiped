@@ -22,7 +22,11 @@
 								<tr>
 									<td><%= link_to p.last_name, edit_person_path(p) %></td>
 									<td><%= p.first_name %></td>
-									<td><%=  %></td>
+									<% unless p.occupation.nil? %>
+										<td><%= p.occupation.name %></td>
+									<% else %>
+										<td>      </td>	
+									<% end %>
 									<td><%= link_to 'Удалить', person_path(p), :method => :delete %></td>
 								</tr>
 		          <% end %>  
