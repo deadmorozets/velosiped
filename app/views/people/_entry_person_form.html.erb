@@ -18,7 +18,10 @@
 	            </div>
 	          </div>
 	          <div class="form-group">
-	          	<%= f.collection_select(:occupation_id, Occupation.all, :id, :name) %>
+	          	<%= f.label :occupation_id, 'Должность', class: "col-lg-3 control-label" %>
+	          	<div class="col-lg-9">
+	          		<%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}, {:class => "form-control"}) %>
+	          	</div>
 	          </div>	
 	          <div class="form-group">
 	            <div class="col-lg-9 col-lg-offset-3">

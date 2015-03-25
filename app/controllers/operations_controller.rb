@@ -1,5 +1,5 @@
 class OperationsController < ApplicationController
-	before_action :find_order
+	before_action :find_order, except: [:in_hand]
 	before_action :find_operation, only: [:edit, :update, :destroy]
 
 	def new
@@ -31,6 +31,10 @@ class OperationsController < ApplicationController
 		redirect_to edit_order_path(@order)
 	end
 
+	def in_hand
+		@operations = Operation.where(finish_date: nil)
+	end
+
 	private
 
 	def find_order
@@ -42,6 +46,6 @@ class OperationsController < ApplicationController
 	end
 
 	def operation_params
-		params.require(:operation).permit(:title, :signed, :cost, :finish_date, :duration)
+		params.require(:operation).permit(:title, :signed, :cost, :finish_date, :duration, :person_id)
 	end
 end

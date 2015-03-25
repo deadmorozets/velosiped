@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 20150302190935) do
   add_index "orders", ["person_id"], name: "index_orders_on_person_id", using: :btree
 
   create_table "people", force: true do |t|
-    t.integer  "order_id"
-    t.integer  "operation_id"
     t.integer  "occupation_id"
     t.string   "first_name"
     t.integer  "post"

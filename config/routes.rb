@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'orders#index'
+
+  get 'operations/in_hand'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
