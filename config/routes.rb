@@ -21,6 +21,11 @@ Rails.application.routes.draw do
   root 'orders#index'
 
   get 'operations/in_hand'
+
+  get '/orders/:order_id/operations/:id/additional', to: 'operations#additional', as: 'additional_operation'
+  
+  get '/orders/:order_id/operations/:id/split', to: 'operations#split', as: 'split_operation'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

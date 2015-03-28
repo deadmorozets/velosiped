@@ -54,16 +54,18 @@
           </div>
 
           <!-- ******Таблица операций для заказа******** -->
-	          <div class="col-lg-6 col-lg-offset-1">
+	          <div class="col-lg-7">
 	            <form class="bs-component">
 	              <table class="table table-striped table-hover ">
 					        <thead>
 					          <tr>
-					            <th class='col-md-3'>Название</th>
-					            <th class='col-md-2'>Исполнитель</th>
-					            <th class='col-md-2'>Стоимость</th>
-					            <th class='col-md-2'>Окончена</th>
-					            <th class='col-md-2'>Длительность</th>
+					            <th class='col-md-5'>Название</th>
+					            <th class='col-md-1'>Испол-</br>нитель</th>
+					            <th class='col-md-1'>Стои-</br>мость</th>
+					            <th class='col-md-1'>Окон-</br>чена</th>
+					            <th class='col-md-1'>Длитель-</br>ность</th>
+					            <th class='col-md-1'></th>
+					            <th class='col-md-1'></th>
 					            <th class='col-md-1'></th>
 					          </tr>
 					        </thead>
@@ -75,16 +77,26 @@
 												<% else %>
 													<td> - <%= link_to p.title, edit_order_operation_path(@order, p) %></td>
 												<% end %>
-												<td><%= p.person.last_name %></td>
+												<% unless p.person.nil? %>
+													<td><%= p.person.last_name %></td>
+												<% else %>
+													<td></td>
+												<% end %>
 												<td><%= p.cost %></td>
 												<td><%= p.finish_date %></td>
 												<td><%= p.duration %></td>
-												<td><%= link_to 'Удалить', order_operation_path(@order, p), :method => :delete %></td>
+												<td><%= link_to image_tag("Full.png", size: '20x20', alt: "Удалить"), order_operation_path(@order, p), :method => :delete %></td>
+												<td><%= link_to image_tag("Add.png", size: '20x20', alt: "Добавить"), additional_operation_path(@order, p) %></td>
+												<td><%= link_to image_tag("Share.png", size: '20x20', alt: "Разделить"), split_operation_path(@order, p) %></td>
 											</tr>
 					          <% end %>
 					        </tbody>
 					      </table>
-					      <%= link_to 'Добавить операцию', new_order_operation_path(@order) %>
+					      <div class="form-group">
+					      	<div class="col-lg-6">
+					      		<%= link_to 'Новая операция', new_order_operation_path(@order), class: 'btn btn-primary btn-xs' %>
+					      	</div>
+					      </div>
 	            </form>
 	          </div>
 

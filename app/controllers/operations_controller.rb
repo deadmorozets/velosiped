@@ -1,6 +1,6 @@
 class OperationsController < ApplicationController
 	before_action :find_order, except: [:in_hand]
-	before_action :find_operation, only: [:edit, :update, :destroy]
+	before_action :find_operation, only: [:edit, :update, :destroy, :additional, :split]
 
 	def new
 		@operation = Operation.new
@@ -33,6 +33,37 @@ class OperationsController < ApplicationController
 
 	def in_hand
 		@operations = Operation.where(finish_date: nil)
+	end
+
+	def additional
+		@add_operation = @order.operations.new
+		
+		@add_operation.title = "Добавка " + @operation.title
+		@add_operation.signed = false
+		@add_operation.finish_date = @operation.finish_date
+		@add_operation.person_id = @operation.person_id
+
+		if @add_operation.save 
+			redirect_to edit_order_operation_path(@order, @add_operation)
+		end
+	end
+
+	def split
+		@add_operation = @order.operations.new
+		
+		@add_operation.title = @operation.title
+		@add_operation.signed = @operation.signed
+		@add_operation.finish_date = @operation.finish_date
+		unless @operation.cost.nil?
+			@add_operation.cost = @operation.cost / 2
+		end
+		unless @operation.duration.nil?
+			@add_operation.duration = @operation.duration / 2
+		end
+
+		if @add_operation.save 
+			redirect_to edit_order_operation_path(@order, @add_operation)
+		end
 	end
 
 	private
