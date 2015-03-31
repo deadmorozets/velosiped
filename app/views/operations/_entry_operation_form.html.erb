@@ -25,7 +25,7 @@
 	          <div class="form-group">
 	            <%= f.label :cost, 'Стоимость', class: "col-lg-3 control-label" %>
 	            <div class="col-lg-6">
-	              <%= f.number_field :cost,  placeholder: '100.00', class: "form-control" %>
+	              <%= f.number_field :cost,  placeholder: '100.00', class: "form-control", step: 'any' %>
 	            </div>
 	          </div>
 	          <div class="form-group">
@@ -37,7 +37,7 @@
 	          <div class="form-group">
 	            <%= f.label :duration, 'Трудозатраты', class: "col-lg-3 control-label" %>
 	            <div class="col-lg-6">
-	              <%= f.number_field :duration, placeholder: 'чел. смен', class: "form-control" %>
+	              <%= f.number_field :duration, placeholder: 'чел. смен', class: "form-control", step: 'any' %>
 	            </div>
 	          </div>
 	          <div class="form-group">
