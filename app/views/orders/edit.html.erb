@@ -40,7 +40,7 @@
 				          <div class="form-group">
 				            <%= f.label :finish_date, 'Сдан', class: "col-lg-3 control-label" %>
 				            <div class="col-lg-7">
-				              <%= f.date_field :finish_date, :value => @order.finish_date.try(:strftime, "%d/%m/%Y"), placeholder: 'дд/мм/гггг', class: "form-control" %>
+				              <%= f.date_field :finish_date, class: "form-control" %>
 				            </div>
 				          </div>
 				          <div class="form-group">
@@ -90,6 +90,16 @@
 												<td><%= link_to image_tag("Share.png", size: '20x20', alt: "Разделить"), split_operation_path(@order, p) %></td>
 											</tr>
 					          <% end %>
+					          <tr class="warning">
+					          	<td>Сумма работ</td>
+					          	<td></td>
+					          	<td><%= @order.operations.sum(:cost) %></td>
+					          	<td></td>
+					          	<td></td>
+					          	<td></td>
+					          	<td></td>
+					          	<td></td>
+					          </tr>
 					        </tbody>
 					      </table>
 					      <div class="form-group">
