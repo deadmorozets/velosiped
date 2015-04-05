@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302190935) do
+ActiveRecord::Schema.define(version: 20150405051851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20150302190935) do
 
   add_index "orders", ["person_id"], name: "index_orders_on_person_id", using: :btree
 
+  create_table "payments", force: true do |t|
+    t.integer "person_id"
+    t.date    "date"
+    t.decimal "amount"
+  end
+
+  add_index "payments", ["person_id"], name: "index_payments_on_person_id", using: :btree
+
   create_table "people", force: true do |t|
     t.integer  "occupation_id"
     t.string   "first_name"
@@ -81,5 +89,14 @@ ActiveRecord::Schema.define(version: 20150302190935) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "wages", force: true do |t|
+    t.integer "payment_id"
+    t.integer "operation_id"
+    t.decimal "amount"
+  end
+
+  add_index "wages", ["operation_id"], name: "index_wages_on_operation_id", using: :btree
+  add_index "wages", ["payment_id"], name: "index_wages_on_payment_id", using: :btree
 
 end
