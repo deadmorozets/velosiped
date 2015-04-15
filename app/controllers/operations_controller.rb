@@ -1,5 +1,5 @@
 class OperationsController < ApplicationController
-	before_action :find_order, except: [:in_hand]
+	before_action :find_order, except: [:in_hand, :finished]
 	before_action :find_operation, only: [:edit, :update, :destroy, :additional, :split]
 
 	def new
@@ -63,6 +63,14 @@ class OperationsController < ApplicationController
 
 		if @add_operation.save 
 			redirect_to edit_order_operation_path(@order, @add_operation)
+		end
+	end
+
+	def finished
+		@operation = Operation.find(params[:id])
+		@operation.finish_date = Date.yesterday()
+		if @operation.save
+			redirect_to operations_in_hand_path
 		end
 	end
 

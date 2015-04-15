@@ -35,7 +35,8 @@
 									<% end %>
 									<td><%= p.person.last_name %> <%= p.person.first_name %></td>
 									<td><%= p.cost %></td>
-									<td> </td>
+									<td><%= link_to image_tag("Tasks.png", size: '20x20', alt: "Выполнено"), 
+										finished_operation_path(p) %> </td>
 								</tr>
 		          <% end %>
 		        </tbody>

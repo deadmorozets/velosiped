@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   
   get '/orders/:order_id/operations/:id/split', to: 'operations#split', as: 'split_operation'
 
+  get 'operations/:id/finished', to: 'operations#finished', as: 'finished_operation'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
