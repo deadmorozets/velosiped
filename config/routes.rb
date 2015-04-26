@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   resources :orders, except: :show do
     resources :operations
   end
-  
+
+  get 'orders/search', to: 'orders#search', as: 'orders_search'
+
   resources :people, except: :show
   resources :occupations, except: :show
 

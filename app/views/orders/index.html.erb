@@ -37,7 +37,29 @@
 		<div>
 	    <%= link_to 'Новый заказ', new_order_path, :class => 'btn btn-success' %>
 	    <%= link_to 'В работе', operations_in_hand_path, :class => 'btn btn-info' %>
-    </div>
+	    <div class="btn-group">
+        <a href="#" <% if session[:orders_filter] == '0' || 
+        									session[:orders_filter] == '1' %>
+        									class="btn btn-warning"
+        						<% else %>
+        									class="btn btn-info"
+        						<% end %>
+        										>Фильтр</a>
+        <a href="#" <% if session[:orders_filter] == '0' || 
+        									session[:orders_filter] == '1' %>
+        									class="btn btn-warning dropdown-toggle" 
+										<% else %>
+													class="btn btn-info dropdown-toggle"
+										<% end %>
+        									data-toggle="dropdown"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to 'Текущие', orders_path(:orders_filter => '0') %></li>
+          <li><%= link_to 'Выполненные', orders_path(:orders_filter => '1') %></li>
+          <li class="divider"></li>
+          <li><%= link_to 'Все', orders_path(:orders_filter => '2') %></li>
+        </ul>
+      </div>
+    </div>	
 
 	</div>
 </div>
