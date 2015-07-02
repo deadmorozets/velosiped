@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  
+  resources :payments, except: :show
+  get 'payments/:payment_date/payments_day', to: 'payments#payments_day', as: 'payments_day'
+  get 'payments/:person_id/operations_and_payments', to: 'payments#operations_and_payments',
+                                as: 'operations_and_payments'
+
   get 'occupations/new'
 
   get 'occupations/create'

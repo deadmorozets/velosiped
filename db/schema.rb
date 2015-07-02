@@ -55,8 +55,6 @@ ActiveRecord::Schema.define(version: 20150405051851) do
     t.decimal "amount"
   end
 
-  add_index "payments", ["person_id"], name: "index_payments_on_person_id", using: :btree
-
   create_table "people", force: true do |t|
     t.integer  "occupation_id"
     t.string   "first_name"
