@@ -62,7 +62,7 @@
 					          </tr>
 					        </thead>
 					        <tbody>
-					          <% @order.operations.each do |p| %>
+					          <% @operations.each do |p| %>
 											<tr>
 												<% if p.signed %>
 													<td> + <%= link_to p.title, edit_order_operation_path(@order, p) %></td>

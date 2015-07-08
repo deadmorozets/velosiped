@@ -8,9 +8,13 @@
 			        <thead>
 			          <tr>
 			          	<th class='col-md-1'> </th>
-			            <th class='col-md-3'>Дата выполнения</th>
+			            <th class='col-md-1'>Дата выполнения</th>
 			            <th class='col-md-3'>Операция</th>
-			            <th class='col-md-3'>Выплачено</th>
+			            <th class='col-md-3'>Заказ</th>
+			            <th class='col-md-1'>Стоимость</th>
+			            <th class='col-md-1'>Выплачено</th>
+			            <th class='col-md-1'>Добавить</th>
+			            <th class='col-md-1'>Удалить</th>
 			          </tr>
 			        </thead>
 			        <tbody>
@@ -19,7 +23,12 @@
 										<td><%=  %></td>
 										<td><%= p.finish_date %></td>
 										<td><%= p.title %></td>
-										<td><%= p.wages.sum('amount') %></td>
+										<td><%= p.order.title %></td>
+										<td><%= p.cost %></td>
+										<td><%= p.wage_sum %></td>
+										<td><%= link_to image_tag("Add.png", size: '20x20', alt: "Добавить"),
+																		add_wage_path(:payment_id => @payment.id, 
+																									:operation_id => p.operations_id) %></td>
 									</tr>
 			          <% end %>
 			        </tbody>

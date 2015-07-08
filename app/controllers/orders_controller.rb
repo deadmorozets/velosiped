@@ -10,11 +10,11 @@ class OrdersController < ApplicationController
     end
     session[:orders_filter] = params[:orders_filter]
     if params[:orders_filter] == '0'
-      @orders = Order.current_orders
+      @orders = Order.current_orders.order(:start_date)
     elsif params[:orders_filter] == '1'
-      @orders = Order.finished_orders
+      @orders = Order.finished_orders.order(:start_date)
     elsif params[:orders_filter] == '2'
-      @orders = Order.all
+      @orders = Order.all.order(:start_date)
     end
   end
 
@@ -32,6 +32,7 @@ class OrdersController < ApplicationController
   end
 
   def edit
+    @operations = @order.operations.order(:title).includes(:person)
   end
 
   def update

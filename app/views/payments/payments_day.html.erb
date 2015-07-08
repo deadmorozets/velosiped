@@ -22,7 +22,7 @@
 									<% end %>
 									<td><%= p.amount %></td>
 									<td><%= link_to p.wages.sum("amount"), operations_and_payments_path(
-													:person_id => p.person_id) %></td>
+													:payment_id => p.id) %></td>
 								</tr>
 		          <% end %>
 		        </tbody>
